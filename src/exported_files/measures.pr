@@ -1,0 +1,20 @@
+extends Node
+
+
+
+{[ let brand = ds.currentBrand() /]}
+{[ const measureTokensTree = ds.tokenGroupTreeByType("Measure", brand.id) /]}
+{[ traverse measureTokensTree property subgroups into measureTokenGroup ]}
+	{[ let fullTokenGroupPath = createFullTokenGroupPath(measureTokenGroup) /]}
+	{[ const measureTokenInGroups = ds.tokensByGroupId(measureTokenGroup.id) /]}
+	{[ for measureToken in measureTokenInGroups ]}
+	{[ const fullTokenPath = arrayConcat(fullTokenGroupPath, measureToken.name) /]}
+	{[ const fullTokenName = arrayJoin(fullTokenPath, " ").snakecased() /]}
+	{[ if (measureToken.description && measureToken.description !== "") ]}
+{{ createDocumentationComment(measureToken.description, "") }}
+	{[/]}
+var {{ fullTokenName }} = {[ inject "export_measure_value" context measureToken.value /]}
+
+
+	{[/]}
+{[/]}

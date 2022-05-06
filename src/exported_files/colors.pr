@@ -1,0 +1,20 @@
+extends Node
+
+
+
+{[ let brand = ds.currentBrand() /]}
+{[ const colorTokensTree = ds.tokenGroupTreeByType("Color", brand.id) /]}
+{[ traverse colorTokensTree property subgroups into colorTokenGroup ]}
+	{[ let fullTokenGroupPath = createFullTokenGroupPath(colorTokenGroup) /]}
+	{[ const colorTokenInGroups = ds.tokensByGroupId(colorTokenGroup.id) /]}
+	{[ for colorToken in colorTokenInGroups ]}
+	{[ const fullTokenPath = arrayConcat(fullTokenGroupPath, colorToken.name) /]}
+	{[ const fullTokenName = arrayJoin(fullTokenPath, " ").snakecased() /]}
+	{[ if (colorToken.description && colorToken.description !== "") ]}
+{{ createDocumentationComment(colorToken.description, "") }}
+	{[/]}
+var {{ fullTokenName }} = {[ inject "export_color_value" context colorToken.value /]}
+
+
+	{[/]}
+{[/]}

@@ -1,0 +1,5 @@
+{[ const alpha = context.a /]}
+{[ const red = context.r /]}
+{[ const green = context.g /]}
+{[ const blue = context.b /]}
+Color8({{red}}, {{green}}, {{blue}}, {{alpha}})

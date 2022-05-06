@@ -1,0 +1,20 @@
+extends Node
+
+
+
+{[ let brand = ds.currentBrand() /]}
+{[ const radiusTokensTree = ds.tokenGroupTreeByType("Radius", brand.id) /]}
+{[ traverse radiusTokensTree property subgroups into radiusTokenGroup ]}
+	{[ let fullTokenGroupPath = createFullTokenGroupPath(radiusTokenGroup) /]}
+	{[ const radiusTokenInGroups = ds.tokensByGroupId(radiusTokenGroup.id) /]}
+	{[ for radiusToken in radiusTokenInGroups ]}
+	{[ const fullTokenPath = arrayConcat(fullTokenGroupPath, radiusToken.name) /]}
+	{[ const fullTokenName = arrayJoin(fullTokenPath, " ").snakecased() /]}
+	{[ if (radiusToken.description && radiusToken.description !== "") ]}
+{{ createDocumentationComment(radiusToken.description, "") }}
+	{[/]}
+var {{ fullTokenName }} = {[ inject "export_measure_value" context radiusToken.value.radius /]}
+
+
+	{[/]}
+{[/]}

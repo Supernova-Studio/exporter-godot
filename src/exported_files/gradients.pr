@@ -1,0 +1,37 @@
+extends Node
+
+
+
+{[ let brand = ds.currentBrand() /]}
+{[ const gradientTokensTree = ds.tokenGroupTreeByType("Gradient", brand.id) /]}
+{[ traverse gradientTokensTree property subgroups into gradientTokenGroup ]}
+	{[ let fullTokenGroupPath = createFullTokenGroupPath(gradientTokenGroup) /]}
+	{[ const gradientTokenInGroups = ds.tokensByGroupId(gradientTokenGroup.id) /]}
+	{[ for gradientToken in gradientTokenInGroups ]}
+	{[ const fullTokenPath = arrayConcat(fullTokenGroupPath, gradientToken.name) /]}
+	{[ const fullTokenName = arrayJoin(fullTokenPath, " ").snakecased() /]}
+	{[ if (gradientToken.description && gradientToken.description !== "") ]}
+{{ createDocumentationComment(gradientToken.description, "") }}
+	{[/]}
+{[ log gradientToken /]}
+var {{ fullTokenName }} := Gradient.new()
+var {{ fullTokenName }}_data := {
+{[ for stop in gradientToken.value.stops ]}
+	{{ stop.position.toString() }}: {[ inject "export_color_value" context stop.color/]},
+{[/]}
+}
+
+
+{[/]}
+
+func _ready():
+
+{[ for gradientToken in gradientTokenInGroups ]}
+{[ const fullTokenPath = arrayConcat(fullTokenGroupPath, gradientToken.name) /]}
+{[ const fullTokenName = arrayJoin(fullTokenPath, " ").snakecased() /]}
+	{{ fullTokenName }}.offsets = {{ fullTokenName }}_data.keys()
+	{{ fullTokenName }}.colors = {{ fullTokenName }}_data.values()
+	
+
+{[/]}
+{[/]}

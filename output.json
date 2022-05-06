@@ -1,0 +1,24 @@
+{
+    "blueprints": [
+        {
+            "invoke": "colors.pr",
+            "write_to": "Colors.gd"
+        },
+        {
+            "invoke": "gradients.pr",
+            "write_to": "Gradients.gd"
+        },
+        {
+            "invoke": "measures.pr",
+            "write_to": "Measures.gd"
+        },
+        {
+            "invoke": "radii.pr",
+            "write_to": "Radii.gd"
+        },
+        {
+            "invoke": "strings.pr",
+            "write_to": "Strings.gd"
+        }
+    ]
+}
