@@ -1,23 +1,20 @@
 {
-    "id": "io.supernova.godot",
-    "name": "Godot",
-    "description": "Godot token exporter",
-    "author": "Jan Poisl",
-    "organization": "Supernova",
-    "source_dir": "src",
-    "version": "1.0.1",
-    "usesBrands": true,
-    "config": {
-        "sources": "sources.json",
-        "output": "output.json",
-        "js": "src/functions.js"
-    },
-    "engines": {
-        "pulsar": "1.0.0",
-        "supernova": "1.0.0"
-    },
-    "tags": [
-        "Godot",
-        "Tokens"
-    ]
+  "id": "io.supernova.godot",
+  "name": "Godot",
+  "description": "Godot token exporter",
+  "author": "Jan Poisl",
+  "organization": "Supernova",
+  "source_dir": "src",
+  "version": "1.0.2",
+  "usesBrands": true,
+  "config": {
+    "sources": "sources.json",
+    "output": "output.json",
+    "js": "src/functions.js"
+  },
+  "engines": {
+    "pulsar": "1.0.0",
+    "supernova": "1.0.0"
+  },
+  "tags": ["Godot", "Tokens"]
 }
